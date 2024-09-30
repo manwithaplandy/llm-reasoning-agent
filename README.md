@@ -47,8 +47,8 @@ The agents interact within a conversational framework managed by Semantic Kernel
 
 ## Prerequisites
 
-- **Python**: Version 3.7 or higher.
-- **Azure OpenAI Account**: Access to Azure OpenAI services with a deployed model (e.g., GPT-4).
+- **Python**: Version 3.10 or higher.
+- **Azure OpenAI Account**: Access to Azure OpenAI services with a deployed model (e.g., gpt-4o).
 - **API Credentials**: Your Azure OpenAI API key and endpoint URL.
 
 ## Setup Instructions
@@ -56,34 +56,16 @@ The agents interact within a conversational framework managed by Semantic Kernel
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/chain-of-thought-chatbot.git
-cd chain-of-thought-chatbot
+git clone https://github.com/manwithaplandy/llm-reasoning-agent.git
+cd llm-reasoning-agent
 ```
 
 ### 2. Install Dependencies
-
-Create and activate a virtual environment (recommended):
-
-```bash
-# On macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# On Windows
-python -m venv venv
-venv\Scripts\activate
-```
 
 Install the required Python packages:
 
 ```bash
 pip install -r requirements.txt
-```
-
-If a `requirements.txt` file is not provided, install the dependencies directly:
-
-```bash
-pip install gradio semantic-kernel
 ```
 
 ### 3. Set Up Azure OpenAI Credentials
@@ -92,43 +74,31 @@ Obtain your **Azure OpenAI API Key** and **Endpoint** from the Azure portal.
 
 Set the following environment variables in your shell:
 
-#### On macOS/Linux:
-
 ```bash
 export AZURE_OPENAI_API_KEY='your-api-key'
 export AZURE_OPENAI_ENDPOINT='https://your-resource-name.openai.azure.com/'
 ```
 
-#### On Windows (Command Prompt):
-
-```bash
-set AZURE_OPENAI_API_KEY='your-api-key'
-set AZURE_OPENAI_ENDPOINT='https://your-resource-name.openai.azure.com/'
-```
-
-#### On Windows (PowerShell):
-
-```powershell
-$env:AZURE_OPENAI_API_KEY='your-api-key'
-$env:AZURE_OPENAI_ENDPOINT='https://your-resource-name.openai.azure.com/'
-```
-
 ### 4. Configure Deployment Name
 
-In the `chatbot.py` script, update the `deployment_name` variable with the name of your Azure OpenAI deployment:
+Make sure you have a deployment in Azure OpenAI called "gpt-4o". 
 
-```python
-deployment_name = "your-deployment-name"  # Replace with your actual deployment name
+Alternatively, you can change the deployment name with an environment variable
+
+In the `app.py` script, update the `deployment_name` variable with the name of your Azure OpenAI deployment:
+
+```bash
+export DEPLOYMENT_NAME="gpt-4-turbo"  # Replace with your actual deployment name
 ```
 
 Ensure that the deployment name matches the model you have deployed on Azure (e.g., "gpt-4").
 
 ## Running the Chatbot
 
-Execute the Python script:
+Start the Gradio application:
 
 ```bash
-python chatbot.py
+gradio app.py
 ```
 
 Upon running, Gradio will launch a local web server. Look for a URL in the terminal output similar to `http://127.0.0.1:7860/` and open it in your web browser to interact with the chatbot.
@@ -151,7 +121,7 @@ Can you explain how photosynthesis works in plants?
 
 ```
 # USER: 
-'Can you explain how photosynthesis works in plants?'
+Can you explain how photosynthesis works in plants?
 
 # assistant - Initial: 
 Please begin thinking about how to explain the process of photosynthesis in plants to the user.
@@ -174,7 +144,7 @@ Photosynthesis in plants is a process where chlorophyll in the leaves captures s
 
 ## Project Structure
 
-- **chatbot.py**: The main script containing the chatbot implementation.
+- **app.py**: The main script containing the chatbot implementation.
 - **README.md**: Documentation and instructions.
 - **requirements.txt**: List of Python dependencies (if provided).
 
