@@ -41,7 +41,7 @@ Using all of the information at hand, give the user a well-thought-out and well-
 # Set up Azure OpenAI credentials
 azure_openai_api_key = os.environ.get("AZURE_OPENAI_API_KEY")
 azure_openai_endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
-deployment_name = "gpt-4o" 
+deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4o" )
 
 # Set up logging
 setup_logging()
